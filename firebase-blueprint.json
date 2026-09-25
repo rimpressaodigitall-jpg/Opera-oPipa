@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "Truck": {
+      "title": "Truck",
+      "description": "Represents a water tank truck in the fleet.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "plate": { "type": "string" },
+        "driverName": { "type": "string" },
+        "lastLat": { "type": "number" },
+        "lastLng": { "type": "number" },
+        "lastUpdate": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["IDLE", "IN_ROUTE", "ARRIVED"] }
+      },
+      "required": ["plate", "driverName"]
+    },
+    "Delivery": {
+      "title": "Delivery",
+      "description": "Represents a water delivery task assigned to a truck.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "truckId": { "type": "string" },
+        "residentName": { "type": "string" },
+        "address": { "type": "string" },
+        "referencePoint": { "type": "string" },
+        "councilman": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "IN_ROUTE", "DELIVERED"] },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "photo": { "type": "string", "description": "Base64 encoded image for proof of delivery" }
+      },
+      "required": ["residentName", "address", "councilman", "status"]
+    },
+    "Sitio": {
+      "title": "Sitio",
+      "description": "Custom locations/farms registered in the system.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "description": { "type": "string" }
+      },
+      "required": ["name", "lat", "lng"]
+    },
+    "Resident": {
+      "title": "Resident",
+      "description": "Represents a resident who receives water deliveries.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "neighborhood": { "type": "string" },
+        "phone": { "type": "string" },
+        "councilman": { "type": "string" }
+      },
+      "required": ["name", "address", "neighborhood"]
+    },
+    "Councilman": {
+      "title": "Councilman",
+      "description": "Represents a councilman associated with water requests.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "AdminConfig": {
+      "title": "AdminConfig",
+      "description": "System configuration for administrators.",
+      "type": "object",
+      "properties": {
+        "password": { "type": "string", "description": "Hashed or plain text password for admin access" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["password"]
+    }
+  },
+  "firestore": {
+    "/config/admin": {
+      "schema": "AdminConfig",
+      "description": "Global admin configuration."
+    },
+    "/trucks/{truckId}": {
+      "schema": "Truck",
+      "description": "Collection of trucks."
+    },
+    "/deliveries/{deliveryId}": {
+      "schema": "Delivery",
+      "description": "Collection of deliveries."
+    },
+    "/sitios/{sitioId}": {
+      "schema": "Sitio",
+      "description": "Collection of custom registered locations (sitios)."
+    },
+    "/residents/{residentId}": {
+      "schema": "Resident",
+      "description": "Collection of residents."
+    },
+    "/councilmen/{councilmanId}": {
+      "schema": "Councilman",
+      "description": "Collection of councilmen."
+    }
+  }
+}

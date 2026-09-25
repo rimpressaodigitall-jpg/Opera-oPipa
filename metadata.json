@@ -1,0 +1,11 @@
+{
+  "name": "Operação Pipa",
+  "description": "Sistema de monitoramento e gestão de frotas de caminhões-pipa para a Prefeitura de Inhapi, com rastreamento em tempo real, visualização de rotas com setas direcionais e assignação de entregas.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

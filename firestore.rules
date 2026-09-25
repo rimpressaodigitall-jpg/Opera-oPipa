@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Connection health check
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // Trucks
+    match /trucks/{truckId} {
+      allow read: if true;
+      allow create, delete: if isSignedIn(); // In a real app, only admins
+      allow update: if isSignedIn();
+    }
+
+    // Deliveries
+    match /deliveries/{deliveryId} {
+      allow read: if true;
+      allow create, delete: if isSignedIn();
+      allow update: if isSignedIn();
+    }
+
+    // Sitios
+    match /sitios/{sitioId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // Residents
+    match /residents/{residentId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // Councilmen
+    match /councilmen/{councilmanId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // Drivers
+    match /drivers/{driverId} {
+      allow read: if true;
+      allow create, update, delete: if isSignedIn();
+    }
+
+    // Config
+    match /config/{configId} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}

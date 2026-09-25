@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#1b4382"/>
+      <stop offset="100%" stop-color="#0f2b5c"/>
+    </linearGradient>
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="truckGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background with rounded corners for adaptive Android look -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Subtle ring decoration -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#38bdf8" stroke-width="4" stroke-opacity="0.25"/>
+
+  <!-- Water Droplet Glow Base -->
+  <path d="M256 70 C256 70, 140 230, 140 330 A116 116 0 0 0 372 330 C372 230, 256 70, 256 70 Z" 
+        fill="url(#dropGrad)" 
+        filter="url(#shadow)"/>
+
+  <!-- Inner Droplet Highlight -->
+  <path d="M230 140 C230 140, 175 250, 175 320 A80 80 0 0 0 210 385 C170 360, 160 300, 185 240 Z" 
+        fill="#ffffff" 
+        opacity="0.35"/>
+
+  <!-- Delivery Truck / Pipa Silhouette centered inside droplet -->
+  <g transform="translate(176, 260) scale(0.68)" filter="url(#shadow)">
+    <!-- Tanker Cylinder (Pipa) -->
+    <rect x="40" y="30" width="105" height="55" rx="14" fill="#0284c7" stroke="#ffffff" stroke-width="5"/>
+    <!-- Tanker Bands -->
+    <line x1="68" y1="30" x2="68" y2="85" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+    <line x1="116" y1="30" x2="116" y2="85" stroke="#ffffff" stroke-width="4" opacity="0.8"/>
+    <!-- Water Wave on Tanker -->
+    <path d="M48 60 Q 66 52, 84 60 T 120 60" fill="none" stroke="#7dd3fc" stroke-width="4"/>
+    
+    <!-- Truck Cab -->
+    <path d="M145 42 L185 42 L205 65 L205 85 L145 85 Z" fill="#ffffff"/>
+    <!-- Cab Window -->
+    <path d="M152 48 L180 48 L195 65 L152 65 Z" fill="#0369a1"/>
+    
+    <!-- Chassis -->
+    <rect x="30" y="85" width="180" height="12" rx="4" fill="#334155"/>
+    
+    <!-- Wheels -->
+    <circle cx="68" cy="100" r="16" fill="#1e293b" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="68" cy="100" r="6" fill="#94a3b8"/>
+    
+    <circle cx="116" cy="100" r="16" fill="#1e293b" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="116" cy="100" r="6" fill="#94a3b8"/>
+    
+    <circle cx="180" cy="100" r="16" fill="#1e293b" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="180" cy="100" r="6" fill="#94a3b8"/>
+  </g>
+
+  <!-- Bottom Badge: INHAPI -->
+  <rect x="156" y="420" width="200" height="34" rx="17" fill="#ffffff" opacity="0.95"/>
+  <text x="256" y="443" 
+        text-anchor="middle" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-size="16" 
+        font-weight="900" 
+        letter-spacing="3" 
+        fill="#1b4382">OPERAÇÃO PIPA</text>
+</svg>
